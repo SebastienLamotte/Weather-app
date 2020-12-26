@@ -9,10 +9,8 @@ const forecast = (latitude, longitude, callback) => {
         } else if (!body.weather) {
             callback('Unable to find location', undefined);
         } else {
-            const {weather, main, sys} = body
-            const sunrise = new Date((sys.sunrise)*1000);
-            const sunset = new Date((sys.sunset)*1000)
-            callback(undefined, weather[0].description.charAt(0).toUpperCase() + weather[0].description.slice(1) + "! It's currently "+ main.temp + " degrees out. There is " + main.humidity + " % of humidity. Sunrise : " + sunrise.getHours() + "h" + sunrise.getMinutes() + "m. And sunset: " + sunset.getHours() + "h" + sunset.getMinutes() + "m.");
+            const {weather, main} = body;
+            callback(undefined, weather[0].description.charAt(0).toUpperCase() + weather[0].description.slice(1) + "! It's currently "+ main.temp + " degrees out. This hight today is "+main.temp_max + " with a low of "+ main.temp_min +". There is " + main.humidity + " % of humidity.");
         }
     })
 }
